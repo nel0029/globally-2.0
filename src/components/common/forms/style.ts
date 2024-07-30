@@ -17,18 +17,24 @@ export const FormCard = styled.div<{ $size?: number }>`
   border-radius: ${({ theme }) => theme.size["5"]};
 `;
 
-export const FormItem = styled.div<{ $size?: number }>`
+export const FormItemWrapper = styled.div<{ $size?: number }>`
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: ${({ theme, $size }) => `${$size}px` ?? theme.size["0.5"]};
 `;
 
-export const FormInput = styled.input`
-  outline: none;
+export const FormInput = styled.input<{ $isError?: boolean }>`
+  outline-style: ${({ $isError }) => ($isError ? "solid" : "none")};
+  outline-width: ${({ $isError, theme }) =>
+    $isError ? theme.size["0.5"] : "0px"};
+  outline-color: ${({ $isError, theme }) =>
+    $isError ? theme.colors.red["100"] : "transparent"};
+
   border-style: solid;
   border-width: ${({ theme }) => theme.size["0.25"]};
-  border-color: ${({ theme }) => theme.border_colors["400"]};
+  border-color: ${({ $isError, theme }) =>
+    !$isError ? theme.border_colors["600"] : "transparent"};
   border-radius: ${({ theme }) => theme.size["1"]};
 
   font-size: ${({ theme }) => theme.size["4"]};
@@ -37,14 +43,14 @@ export const FormInput = styled.input`
 
   padding: ${({ theme }) => theme.size["2"]};
 
-  background-color: ${({ theme }) => theme.background["300"]};
+  background-color: ${({ theme }) => "transparent"};
 
   &:focus {
-    background-color: ${({ theme }) => theme.background["300"]} !important;
-  }
+    border-color: transparent;
 
-  &::-webkit-autofill {
-    background-color: ${({ theme }) => theme.background["300"]} !important;
+    outline-style: solid;
+    outline-width: ${({ theme }) => theme.size["0.5"]};
+    outline-color: ${({ theme }) => theme.colors.blue["100"]};
   }
 `;
 
@@ -76,18 +82,35 @@ export const FormButton = styled.button`
 `;
 
 export const FormText = styled.span<{
-  $isPrimary?: boolean;
-  $isTitle?: boolean;
   $isClickable?: boolean;
-  $isStatement?: boolean;
+  $size?:
+    | "xs"
+    | "sm"
+    | "md"
+    | "lg"
+    | "xl"
+    | "2xl"
+    | "3xl"
+    | "4xl"
+    | "5xl"
+    | "6xl"
+    | "7xl";
+  $variant?:
+    | "primary"
+    | "danger"
+    | "warning"
+    | "success"
+    | "default"
+    | number
+    | string;
+  $fontWeight?: string;
 }>`
-  color: ${({ theme, $isPrimary }) =>
-    $isPrimary ? theme.colors.blue["100"] : theme.font_colors["100"]};
-  font-weight: ${({ $isPrimary }) => ($isPrimary ? "bold" : "normal")};
-  font-size: ${({ theme, $isTitle, $isStatement }) =>
-    theme.size[`${$isTitle ? "6" : $isStatement ? "4" : "3"}`]};
-  line-height: ${({ theme, $isTitle, $isStatement }) =>
-    theme.size[`${$isTitle ? "7" : $isStatement ? "5" : "4"}`]};
+  color: ${({ theme, $variant }) =>
+    theme.font_colors[`${!!$variant ? `${$variant}` : "default"}`]};
+
+  font-weight: ${({ $fontWeight }) => $fontWeight ?? "normal"};
+  font-size: ${({ theme, $size }) => theme.font_size[`${$size}`]};
+  line-height: ${({ theme, $size }) => theme.line_height[`${$size}`]};
   cursor: ${({ $isClickable }) => ($isClickable ? "pointer" : "auto")};
   &:hover {
     text-decoration: ${({ $isClickable }) =>

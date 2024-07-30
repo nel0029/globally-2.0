@@ -15,6 +15,16 @@ export interface Theme {
       [key: string]: string;
     };
     font_colors: {
+      [key: string]:
+        | string
+        | {
+            [key: string]: string;
+          };
+    };
+    font_size: {
+      [key: string]: string;
+    };
+    line_height: {
       [key: string]: string;
     };
   };

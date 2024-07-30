@@ -4,72 +4,75 @@ import {
   FormButton,
   FormCard,
   FormDivider,
-  FormInput,
-  FormItem,
-  FormLabel,
   FormText,
   FormTextWrapper,
 } from "./style";
+import FormItem from "./FormItem";
+import { useEffect, useState } from "react";
 
 const LogInForm = () => {
+  const [formError, setFormError] = useState<{
+    [key: string]: string;
+  }>({});
   const router = useRouter();
+
   return (
-    <FormCard $size={50}>
+    <FormCard $size={30}>
       <FormTextWrapper>
-        <FormText $isPrimary $isTitle>
+        <FormText $variant="primary" $fontWeight="bold" $size="2xl">
           Log In
         </FormText>
-        <FormText $isTitle>your account</FormText>
+        <FormText $size="2xl">your account</FormText>
       </FormTextWrapper>
 
-      <Box $direction="column" $size={10}>
-        <FormItem $size={10}>
-          <FormLabel>Username</FormLabel>
-          <FormInput
-            type="text"
-            placeholder="Type your username here"
-            autoComplete="username"
-          />
-        </FormItem>
+      <Box $direction="column" $size={15}>
+        <FormItem
+          label="Username"
+          type="text"
+          placeholder="Type your username here"
+          error="Username is required"
+        />
 
-        <FormItem $size={10}>
-          <FormLabel>Password</FormLabel>
-          <FormInput
-            type="password"
-            placeholder="Type your password here"
-            autoComplete="current-password"
-          />
-        </FormItem>
+        <FormItem
+          label="Pasword"
+          type="password"
+          placeholder="Type your password here"
+          error="Password is incorrect"
+        />
       </Box>
 
-      <Box $direction="column" $size={20}>
+      <Box $direction="column" $size={15}>
         <FormButton>Log In</FormButton>
 
         <FormDivider $size={1} />
 
-        <FormTextWrapper>
-          <FormText $isStatement>Forgot your password?</FormText>
-          <FormText
-            $isPrimary
-            $isClickable
-            $isStatement
-            onClick={() => router.push("/forgot-password")}
-          >
-            Reset your password
-          </FormText>
-        </FormTextWrapper>
+        <Box $direction="column" $size={5}>
+          <FormTextWrapper>
+            <FormText $size="sm">Forgot your password?</FormText>
+            <FormText
+              $size="sm"
+              $variant="primary"
+              $fontWeight="bold"
+              $isClickable
+              onClick={() => router.push("/forgot-password")}
+            >
+              Reset your password
+            </FormText>
+          </FormTextWrapper>
 
-        <FormTextWrapper>
-          <FormText $isStatement>Not yet registered?</FormText>
-          <FormText
-            $isPrimary
-            $isClickable
-            $isStatement
-            onClick={() => router.push("/register")}
-          >
-            Register here
-          </FormText>
-        </FormTextWrapper>
+          <FormTextWrapper>
+            <FormText $size="sm">Not yet registered?</FormText>
+            <FormText
+              $size="sm"
+              $variant="primary"
+              $fontWeight="bold"
+              $isClickable
+              onClick={() => router.push("/register")}
+            >
+              Register here
+            </FormText>
+          </FormTextWrapper>
+        </Box>
       </Box>
     </FormCard>
   );
