@@ -8,13 +8,35 @@ import {
   FormTextWrapper,
 } from "./style";
 import FormItem from "./FormItem";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const LogInForm = () => {
-  const [formError, setFormError] = useState<{
-    [key: string]: string;
-  }>({});
   const router = useRouter();
+  const [form, setForm] = useState({
+    username: "",
+    password: "",
+  });
+  const [formError, setFormError] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleSubmit = () => {
+    if (!form.username || !form.password) {
+      setFormError({
+        username: !form.username ? "Username is required" : "",
+        password: !form.password ? "Password is required" : "",
+      });
+    }
+  };
+
+  const handleOnChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    name: string
+  ) => {
+    setFormError({ ...formError, [name]: "" });
+    setForm({ ...form, [name]: e.target.value });
+  };
 
   return (
     <FormCard $size={30}>
@@ -30,19 +52,25 @@ const LogInForm = () => {
           label="Username"
           type="text"
           placeholder="Type your username here"
-          error="Username is required"
+          name="username"
+          form={form}
+          onChange={handleOnChange}
+          error={formError.username}
         />
 
         <FormItem
           label="Pasword"
           type="password"
           placeholder="Type your password here"
-          error="Password is incorrect"
+          name="password"
+          form={form}
+          onChange={handleOnChange}
+          error={formError.password}
         />
       </Box>
 
       <Box $direction="column" $size={15}>
-        <FormButton>Log In</FormButton>
+        <FormButton onClick={handleSubmit}>Log In</FormButton>
 
         <FormDivider $size={1} />
 

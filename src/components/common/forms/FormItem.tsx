@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { FormInput, FormItemWrapper, FormLabel, FormText } from "./style";
 
 interface FormInputProps {
@@ -6,8 +5,9 @@ interface FormInputProps {
   type: string;
   placeholder: string;
   error?: string;
-  value?: string | number;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  name: string;
+  form: { [key: string]: string };
+  onChange: (e: React.ChangeEvent<HTMLInputElement>, name: string) => void;
 }
 
 const FormItem = ({
@@ -15,7 +15,8 @@ const FormItem = ({
   type,
   placeholder,
   error,
-  value,
+  name,
+  form,
   onChange,
 }: FormInputProps) => {
   return (
@@ -32,8 +33,8 @@ const FormItem = ({
         type={type}
         placeholder={placeholder}
         $isError={!!error}
-        value={value}
-        onChange={onChange}
+        value={form[name]}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, name)}
         autoComplete="off"
       />
     </FormItemWrapper>

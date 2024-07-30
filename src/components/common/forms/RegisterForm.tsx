@@ -8,7 +8,7 @@ import {
   FormTextWrapper,
 } from "./style";
 import FormItem from "./FormItem";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -38,6 +38,14 @@ const RegisterForm = () => {
       });
     }
   };
+
+  const handleOnChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    name: string
+  ) => {
+    setFormError({ ...formError, [name]: "" });
+    setForm({ ...form, [name]: e.target.value });
+  };
   return (
     <FormCard $size={30}>
       <FormTextWrapper>
@@ -53,8 +61,9 @@ const RegisterForm = () => {
           type="text"
           placeholder="Type your username here"
           error={formError.username}
-          value={form.username}
-          onChange={(e) => setForm({ ...form, username: e.target.value })}
+          name="username"
+          form={form}
+          onChange={handleOnChange}
         />
 
         <FormItem
@@ -62,8 +71,9 @@ const RegisterForm = () => {
           type="text"
           placeholder="Type your name here"
           error={formError.name}
-          value={form.name}
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
+          name="name"
+          form={form}
+          onChange={handleOnChange}
         />
 
         <FormItem
@@ -71,8 +81,9 @@ const RegisterForm = () => {
           type="email"
           placeholder="Type your email address here"
           error={formError.email}
-          value={form.email}
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
+          name="email"
+          form={form}
+          onChange={handleOnChange}
         />
 
         <FormItem
@@ -80,8 +91,9 @@ const RegisterForm = () => {
           type="password"
           placeholder="Type your password here"
           error={formError.password}
-          value={form.password}
-          onChange={(e) => setForm({ ...form, password: e.target.value })}
+          name="password"
+          form={form}
+          onChange={handleOnChange}
         />
       </Box>
 
