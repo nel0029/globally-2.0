@@ -3,7 +3,7 @@ export const validateEmail = (
   setFormError: (val: any) => void
 ) => {
   let isValid = true;
-  const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  const emailPattern = /^[\w.+-]+@[\w-]+\.[\w.-]+$/;
 
   if (!form.email) {
     setFormError((prev: { [key: string]: string }) => ({

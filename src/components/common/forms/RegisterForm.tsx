@@ -46,6 +46,8 @@ const RegisterForm = () => {
   const userName = useDebounce(form.user_name, 300);
 
   const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     const { isValid: isUserNameValid } = validateUserName(form, setFormError);
     const { isValid: isEmailValid } = validateEmail(form, setFormError);
     const { isValid: isPasswordValid } = validatePassword(form, setFormError);
@@ -60,8 +62,10 @@ const RegisterForm = () => {
       });
 
       await register({ body: form });
+      if (!formError.user_name && !formError.email && !formError.password) {
+        router.push("/home");
+      }
     }
-    e.preventDefault();
   };
 
   const handleOnChange = (
