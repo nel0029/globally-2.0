@@ -29,18 +29,6 @@ const ThemeClient = ({
     setMode(mode === "dark" ? "light" : "dark");
   };
 
-  useEffect(() => {
-    const body = document.querySelector("body");
-
-    if (body) {
-      if (mode === "dark") {
-        body.style.backgroundColor = "#121212";
-      } else {
-        body.style.backgroundColor = "#F5F5F5";
-      }
-    }
-  }, [mode]);
-
   return (
     <ThemeProvider theme={AppTheme[mode]}>
       <ThemeContext.Provider value={{ mode, toggleMode }}>

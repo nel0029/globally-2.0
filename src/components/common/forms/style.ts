@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FormCard = styled.div<{ $size?: number }>`
+export const FormCard = styled.form<{ $size?: number }>`
   display: flex;
   flex-direction: column;
   gap: ${({ theme, $size }) => `${$size}px` ?? theme.size["2"]};

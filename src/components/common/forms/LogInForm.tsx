@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter } from "next/navigation";
 import {
   Box,
@@ -8,38 +10,60 @@ import {
   FormTextWrapper,
 } from "./style";
 import FormItem from "./FormItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useAuthLogIn from "@/hooks/auth/LogIn";
+import { AuthErrorResponseCodesEnum } from "@/enums/auth/ErrorCodes";
 
 const LogInForm = () => {
   const router = useRouter();
   const [form, setForm] = useState({
-    username: "",
+    login_id: "",
     password: "",
   });
   const [formError, setFormError] = useState({
     username: "",
     password: "",
+    valid: "",
   });
 
-  const handleSubmit = () => {
-    if (!form.username || !form.password) {
-      setFormError({
-        username: !form.username ? "Username is required" : "",
+  const { doRequest: login, data } = useAuthLogIn();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    if (!form.login_id || !form.password) {
+      setFormError((prev: { [key: string]: string }) => ({
+        valid: prev.valid,
+        username: !form.login_id ? "Username is required" : "",
         password: !form.password ? "Password is required" : "",
-      });
+      }));
+
+      return;
     }
+
+    setFormError({ valid: "", username: "", password: "" });
+
+    e.preventDefault();
+    await login({ body: form });
   };
 
   const handleOnChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     name: string
   ) => {
-    setFormError({ ...formError, [name]: "" });
     setForm({ ...form, [name]: e.target.value });
   };
 
+  useEffect(() => {
+    if (data.code === AuthErrorResponseCodesEnum.E0004) {
+      setFormError((prev: { [key: string]: string }) => ({
+        password: prev.password,
+        username: prev.username,
+        valid: data.message,
+      }));
+    }
+  }, [data, router]);
+
   return (
-    <FormCard $size={30}>
+    <FormCard $size={30} onSubmit={handleSubmit}>
       <FormTextWrapper>
         <FormText $variant="primary" $fontWeight="bold" $size="2xl">
           Log In
@@ -52,10 +76,9 @@ const LogInForm = () => {
           label="Username"
           type="text"
           placeholder="Type your username here"
-          name="username"
+          name="login_id"
           form={form}
           onChange={handleOnChange}
-          error={formError.username}
         />
 
         <FormItem
@@ -65,8 +88,12 @@ const LogInForm = () => {
           name="password"
           form={form}
           onChange={handleOnChange}
-          error={formError.password}
         />
+        {formError && formError.valid && (
+          <FormText $size="xs" $variant="red200" $fontWeight="bold">
+            {formError.valid}
+          </FormText>
+        )}
       </Box>
 
       <Box $direction="column" $size={15}>

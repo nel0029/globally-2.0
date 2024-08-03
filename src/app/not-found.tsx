@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import MainLayout from "@/components/layout/main-layout";
 const NotFoundPage = () => {
   const router = useRouter();
 
@@ -10,9 +11,11 @@ const NotFoundPage = () => {
   }, [router]);
 
   return (
-    <div>
-      <h1>NotFoundPage</h1>
-    </div>
+    <MainLayout>
+      <div>
+        <h1>NotFoundPage</h1>
+      </div>
+    </MainLayout>
   );
 };
 export default NotFoundPage;
