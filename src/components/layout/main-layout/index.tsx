@@ -1,10 +1,7 @@
 "use client";
 
-import { Inter } from "next/font/google";
 import ThemeClient from "@/components/common/theme/ThemeClient";
 import { useEffect, useState } from "react";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -16,20 +13,11 @@ export default function RootLayout({
   useEffect(() => {
     const storedMode = localStorage.getItem("mode") || "light";
     setMode(storedMode);
-  }, []);
+  }, [mode]);
 
   return (
     <html lang="en">
-      <body
-        className={inter.className}
-        style={{
-          backgroundColor: mode === "dark" ? "#121212" : "#F5F5F5",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <body>
         <ThemeClient>{children}</ThemeClient>
       </body>
     </html>

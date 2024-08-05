@@ -1,9 +1,12 @@
 "use client";
 
+import { Inter } from "next/font/google";
 import { AppTheme } from "@/configs/theme";
 import { ThemeProvider } from "styled-components";
 import { createContext, useEffect, useState } from "react";
 import Link from "next/link";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const ThemeContext = createContext({
   mode: "light",
@@ -30,15 +33,28 @@ const ThemeClient = ({
   };
 
   return (
-    <ThemeProvider theme={AppTheme[mode]}>
-      <ThemeContext.Provider value={{ mode, toggleMode }}>
-        <Link href={"/home"}>Home</Link>
-        <button onClick={toggleMode}>
-          {mode === "dark" ? "Light" : "Dark"} Mode
-        </button>
-        {children}
-      </ThemeContext.Provider>
-    </ThemeProvider>
+    <div
+      className={inter.className}
+      style={{
+        backgroundColor: mode === "dark" ? "#121212" : "#F5F5F5",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+        width: "100%",
+      }}
+    >
+      <ThemeProvider theme={AppTheme[mode]}>
+        <ThemeContext.Provider value={{ mode, toggleMode }}>
+          <Link href={"/home"}>Home</Link>
+          <button onClick={toggleMode}>
+            {mode === "dark" ? "Light" : "Dark"} Mode
+          </button>
+          {children}
+        </ThemeContext.Provider>
+      </ThemeProvider>
+    </div>
   );
 };
 

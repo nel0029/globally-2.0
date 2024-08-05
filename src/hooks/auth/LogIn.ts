@@ -23,12 +23,15 @@ const useAuthLogIn = () => {
       method: "POST",
       data: body,
     });
+    setResponse(res.data);
+
     setLoading(false);
-    setResponse({
-      code: res.data.code,
-      message: res.data.message,
-      data: res.data.data,
-    });
+
+    if (res.data.code.startsWith("E")) {
+      localStorage.removeItem("user");
+      return;
+    }
+    localStorage.setItem("user", JSON.stringify(res.data.data));
   };
 
   return {

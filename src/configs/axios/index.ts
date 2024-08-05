@@ -1,20 +1,17 @@
-import axios, { AxiosRequestConfig, Method } from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
-const request = axios.create({
-  baseURL: "",
+const axiosRequest = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
 });
 
-request.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
+axiosRequest.interceptors.response.use((response) => {
+  return response;
+});
 
-const requestServer = (params: AxiosRequestConfig) => {
-  return request(params);
+const requestServer = async (params: AxiosRequestConfig) => {
+  const response = await axiosRequest(params);
+
+  return response;
 };
 
 export { requestServer };

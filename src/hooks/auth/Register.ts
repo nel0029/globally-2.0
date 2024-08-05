@@ -23,12 +23,19 @@ const useAuthRegister = () => {
       method: "POST",
       data: body,
     });
-    setLoading(false);
+
     setResponse({
       code: res.data.code,
       message: res.data.message,
       data: res.data.data,
     });
+    setLoading(false);
+
+    if (res.data.code.startsWith("E")) {
+      localStorage.removeItem("user");
+      return;
+    }
+    localStorage.setItem("user", JSON.stringify(res.data.data));
   };
 
   return {

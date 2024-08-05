@@ -3,11 +3,9 @@ import LogInForm from "@/components/common/forms/LogInForm";
 
 const LogInPage = () => {
   return (
-    <>
-      <AuthPageWrapper>
-        <LogInForm />
-      </AuthPageWrapper>
-    </>
+    <AuthPageWrapper>
+      <LogInForm />
+    </AuthPageWrapper>
   );
 };
 
