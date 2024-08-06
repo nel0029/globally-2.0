@@ -16,6 +16,7 @@ import { AuthErrorResponseCodesEnum } from "@/enums/auth/ErrorCodes";
 
 const LogInForm = () => {
   const router = useRouter();
+  const user = localStorage.getItem("user");
   const [form, setForm] = useState({
     login_id: "",
     password: "",
@@ -62,6 +63,11 @@ const LogInForm = () => {
     }
   }, [data, router]);
 
+  useEffect(() => {
+    if (!!user) {
+      router.push("/home");
+    }
+  }, [user, router]);
   return (
     <FormCard $size={30} onSubmit={handleSubmit}>
       <FormTextWrapper>
