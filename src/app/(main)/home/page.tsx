@@ -1,14 +1,9 @@
 "use client";
 
-import Link from "next/link";
+import HomePage from "@/components/routes/main/home/HomePage";
 
-const HomePage = () => {
-  return (
-    <div>
-      <Link href={"/login"}>Login</Link>
-      <div>HomePage</div>
-    </div>
-  );
+const Home = () => {
+  return <HomePage />;
 };
 
-export default HomePage;
+export default Home;

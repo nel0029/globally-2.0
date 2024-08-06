@@ -2,6 +2,7 @@
 
 import ThemeClient from "@/components/common/theme/ThemeClient";
 import { useEffect, useState } from "react";
+import SideBar from "../sidebar";
 
 export default function RootLayout({
   children,

@@ -47,10 +47,6 @@ const ThemeClient = ({
     >
       <ThemeProvider theme={AppTheme[mode]}>
         <ThemeContext.Provider value={{ mode, toggleMode }}>
-          <Link href={"/home"}>Home</Link>
-          <button onClick={toggleMode}>
-            {mode === "dark" ? "Light" : "Dark"} Mode
-          </button>
           {children}
         </ThemeContext.Provider>
       </ThemeProvider>
