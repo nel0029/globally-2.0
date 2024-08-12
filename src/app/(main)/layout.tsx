@@ -3,6 +3,7 @@
 import MainLayout from "@/components/layout/main-layout";
 import { PageWrapper } from "@/components/layout/main-layout/style";
 import SideBar from "@/components/layout/sidebar";
+import UserWrapper from "@/components/layout/user-wrapper";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 

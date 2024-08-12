@@ -1,8 +1,11 @@
-"use client";
-
 import HomePage from "@/components/routes/main/home/HomePage";
 
-const Home = () => {
+export const metadata = {
+  title: "Globally | Feed",
+  description: "This is the feed page",
+};
+
+const Home = async () => {
   return <HomePage />;
 };
 

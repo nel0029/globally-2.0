@@ -3,6 +3,7 @@
 import { Inter } from "next/font/google";
 import ThemeClient from "@/components/common/theme/ThemeClient";
 import { useEffect, useState } from "react";
+import UserWrapper from "@/components/layout/user-wrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,7 +31,9 @@ export default function RootLayout({
           alignItems: "center",
         }}
       >
-        <ThemeClient>{children}</ThemeClient>
+        <UserWrapper>
+          <ThemeClient>{children}</ThemeClient>
+        </UserWrapper>
       </body>
     </html>
   );

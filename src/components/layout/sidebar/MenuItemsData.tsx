@@ -53,7 +53,7 @@ const useMenuItemsData = () => {
       setMenuItems((prevItems) =>
         prevItems.map((item) =>
           item.name === "Profile"
-            ? { ...item, path: `/${user.user_name}` }
+            ? { ...item, path: `/profile/${user.user_name}` }
             : item
         )
       );

@@ -1,5 +1,9 @@
+"use client";
+import useGetFeed from "@/hooks/feed/useGetFeed";
+
 const HomePage = () => {
-  return <div style={{ width: "100%", height: "100%" }}>HomePage</div>;
+  useGetFeed();
+  return <div>HomePage</div>;
 };
 
 export default HomePage;

@@ -62,9 +62,6 @@ const RegisterForm = () => {
       });
 
       await register({ body: form });
-      if (!formError.user_name && !formError.email && !formError.password) {
-        router.push("/home");
-      }
     }
   };
 
@@ -102,6 +99,9 @@ const RegisterForm = () => {
         }
 
         setFormError(newFormError);
+      }
+      if (!formError.user_name && !formError.email && !formError.password) {
+        router.push("/home");
       }
     }
 

@@ -1,6 +1,4 @@
-"use client";
-
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { SideBarContainer } from "./style";
 import {
   IoSunny,
@@ -10,20 +8,14 @@ import {
   IoChevronUp,
   IoPower,
 } from "react-icons/io5";
-import { ThemeContext } from "@/components/common/theme/ThemeClient";
 import MenuItem from "./MenuItem";
 import { usePathname, useRouter } from "next/navigation";
 import useMenuItemsData from "./MenuItemsData";
-
-interface User {
-  profile_picture: {
-    url: string;
-  };
-  user_name: string;
-}
+import { ThemeContext } from "@/contexts/theme";
+import { UserContext } from "@/contexts/user";
 
 const SideBar = () => {
-  const [user, setUser] = useState<User | null>(null);
+  const { user } = useContext(UserContext);
   const { mode, toggleMode } = useContext(ThemeContext);
   const [isChildMenuOpen, setIsChildMenuOpen] = useState(false);
   const toggleChildMenu = () => setIsChildMenuOpen(!isChildMenuOpen);
@@ -32,10 +24,7 @@ const SideBar = () => {
 
   const menuItems = useMenuItemsData();
 
-  useEffect(() => {
-    const userString: string | null = localStorage.getItem("user");
-    setUser(userString ? JSON.parse(userString) : null);
-  }, []);
+  if (user === null) return null;
 
   return (
     <SideBarContainer>
@@ -48,8 +37,9 @@ const SideBar = () => {
           isOnRoute={
             item.path && item.name !== user?.user_name
               ? path.includes(item.path)
-              : item.name === user?.user_name
+              : item.path === user?.user_name
           }
+          path={item.path || ""}
         />
       ))}
       <MenuItem
@@ -57,11 +47,12 @@ const SideBar = () => {
         icon={<IoSettings />}
         onClick={toggleChildMenu}
         iconEnd={isChildMenuOpen ? <IoChevronDown /> : <IoChevronUp />}
+        path=""
       />
 
       <MenuItem
         menuStyle={{ display: isChildMenuOpen ? "flex" : "none" }}
-        text="Account"
+        text="Account Settings"
         icon={
           <div style={{ width: "1.75rem", height: "1.75rem" }}>
             <div
@@ -76,7 +67,7 @@ const SideBar = () => {
           </div>
         }
         isOnRoute={path.includes("settings")}
-        onClick={() => router.push("/settings")}
+        path="/settings"
       />
 
       <MenuItem
@@ -84,12 +75,14 @@ const SideBar = () => {
         text={mode === "dark" ? "Light Mode" : "Dark Mode"}
         icon={mode === "dark" ? <IoSunny /> : <IoMoon />}
         onClick={toggleMode}
+        path=""
       />
       <MenuItem
         menuStyle={{ display: isChildMenuOpen ? "flex" : "none" }}
         text="Logout"
         icon={<IoPower />}
         onClick={toggleMode}
+        path=""
       />
     </SideBarContainer>
   );

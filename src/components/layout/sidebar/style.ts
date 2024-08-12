@@ -1,21 +1,21 @@
 "use client";
 
 import styled from "styled-components";
+import Link from "next/link";
 
 export const SideBarContainer = styled.div`
-  width: max-content;
-  min-width: 200px;
+  width: 300px;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: start;
   gap: 10px;
   border-right: 1px solid ${({ theme }) => theme.border_colors["400"]};
+  padding: ${({ theme }) => theme.size["2"]};
 `;
 
-export const SideBarMenuItem = styled.div<{
-  $isOnRoute?: boolean;
-}>`
+export const SideBarMenuItem = styled(Link)<{ $isOnRoute?: boolean }>`
+  text-decoration: none;
   cursor: pointer;
   width: 100%;
   height: max-content;

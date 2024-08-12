@@ -5,13 +5,9 @@ import { AppTheme } from "@/configs/theme";
 import { ThemeProvider } from "styled-components";
 import { createContext, useEffect, useState } from "react";
 import Link from "next/link";
+import { ThemeContext } from "@/contexts/theme";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const ThemeContext = createContext({
-  mode: "light",
-  toggleMode: () => {},
-});
 
 const ThemeClient = ({
   children,

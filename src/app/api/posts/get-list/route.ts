@@ -1,30 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: NextRequest) {
+export async function GET(request: NextRequest) {
   try {
-    const body = await request.json();
-    const url = `${process.env.API_BASE_URL}/posts`;
+    const url = `${process.env.API_BASE_URL}/feed`;
+
     const cookies = request.headers.get("cookie");
 
     const response = await fetch(url, {
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Cookie: cookies || "",
       },
       credentials: "include",
-      body: JSON.stringify(body),
     });
 
     const data = await response.json();
-    const setCookieHeaders = response.headers.get("set-cookie");
-    const nextResponse = NextResponse.json(data);
 
-    if (setCookieHeaders) {
-      setCookieHeaders.split(",").forEach((cookie) => {
-        nextResponse.headers.append("Set-Cookie", cookie);
-      });
-    }
+    const nextResponse = NextResponse.json(data);
 
     return nextResponse;
   } catch (error) {

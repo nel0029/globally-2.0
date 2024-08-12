@@ -13,10 +13,11 @@ import FormItem from "./FormItem";
 import { useEffect, useState } from "react";
 import useAuthLogIn from "@/hooks/auth/LogIn";
 import { AuthErrorResponseCodesEnum } from "@/enums/auth/ErrorCodes";
+import { AuthSuccessResponseCodesEnum } from "@/enums/auth/SuccessCodes";
 
 const LogInForm = () => {
   const router = useRouter();
-  const user = localStorage.getItem("user");
+
   const [form, setForm] = useState({
     login_id: "",
     password: "",
@@ -29,7 +30,15 @@ const LogInForm = () => {
 
   const { doRequest: login, data } = useAuthLogIn();
 
+  const handleOnChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    name: string
+  ) => {
+    setForm({ ...form, [name]: e.target.value });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     if (!form.login_id || !form.password) {
       setFormError((prev: { [key: string]: string }) => ({
         valid: prev.valid,
@@ -41,20 +50,20 @@ const LogInForm = () => {
     }
 
     setFormError({ valid: "", username: "", password: "" });
-
-    e.preventDefault();
     await login({ body: form });
   };
 
-  const handleOnChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    name: string
-  ) => {
-    setForm({ ...form, [name]: e.target.value });
-  };
-
   useEffect(() => {
-    if (data.code === AuthErrorResponseCodesEnum.E0004) {
+    if (data.code && data.code === AuthSuccessResponseCodesEnum.S0002) {
+      setFormError({
+        username: "",
+        password: "",
+        valid: "",
+      });
+      router.push("/home");
+    }
+
+    if (data.code && data.code === AuthErrorResponseCodesEnum.E0004) {
       setFormError((prev: { [key: string]: string }) => ({
         password: prev.password,
         username: prev.username,
@@ -63,11 +72,6 @@ const LogInForm = () => {
     }
   }, [data, router]);
 
-  useEffect(() => {
-    if (!!user) {
-      router.push("/home");
-    }
-  }, [user, router]);
   return (
     <FormCard $size={30} onSubmit={handleSubmit}>
       <FormTextWrapper>

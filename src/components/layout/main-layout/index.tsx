@@ -1,25 +1,19 @@
 "use client";
 
 import ThemeClient from "@/components/common/theme/ThemeClient";
-import { useEffect, useState } from "react";
-import SideBar from "../sidebar";
+import UserWrapper from "../user-wrapper";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [mode, setMode] = useState("light");
-
-  useEffect(() => {
-    const storedMode = localStorage.getItem("mode") || "light";
-    setMode(storedMode);
-  }, [mode]);
-
   return (
     <html lang="en">
       <body>
-        <ThemeClient>{children}</ThemeClient>
+        <UserWrapper>
+          <ThemeClient>{children}</ThemeClient>
+        </UserWrapper>
       </body>
     </html>
   );
