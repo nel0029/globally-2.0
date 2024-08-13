@@ -40,7 +40,7 @@ export const SideBarIconContainer = styled.div`
   width: max-content;
   display: flex;
   align-items: center;
-  font-size: 20px;
+  font-size: 28px;
 `;
 
 export const SideBarTextContainer = styled.div`

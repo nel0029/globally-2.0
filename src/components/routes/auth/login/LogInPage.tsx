@@ -1,3 +1,5 @@
+"use client";
+
 import { AuthPageWrapper } from "../styled";
 import LogInForm from "@/components/common/forms/LogInForm";
 

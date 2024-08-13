@@ -1,3 +1,5 @@
+"use client";
+
 import { AuthPageWrapper } from "../styled";
 import RegisterForm from "@/components/common/forms/RegisterForm";
 

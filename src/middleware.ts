@@ -13,6 +13,7 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
+    "/home",
     "/notifications/:path*",
     "/explore/:path*",
     "/messages/:path*",

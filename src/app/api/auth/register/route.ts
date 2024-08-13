@@ -1,3 +1,4 @@
+import { requestBackend } from "@/utils/request/request";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -5,7 +6,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const url = `${process.env.API_BASE_URL}/auth/register`;
 
-    const response = await fetch(url, {
+    const { nextResponse } = await requestBackend(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -13,16 +14,6 @@ export async function POST(request: NextRequest) {
       credentials: "include",
       body: JSON.stringify(body),
     });
-
-    const data = await response.json();
-    const setCookieHeaders = response.headers.get("set-cookie");
-    const nextResponse = NextResponse.json(data);
-
-    if (setCookieHeaders) {
-      setCookieHeaders.split(",").forEach((cookie) => {
-        nextResponse.headers.append("Set-Cookie", cookie);
-      });
-    }
 
     return nextResponse;
   } catch (error) {
