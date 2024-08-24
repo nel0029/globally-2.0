@@ -5,6 +5,7 @@ export function middleware(request: NextRequest) {
   const auth_name = request.cookies.get("auth_name");
 
   if (!token || !auth_name) {
+    console.log('MIDDLEWARE: "No token found"');
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
@@ -13,7 +14,7 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/home",
+    "/home/:path*",
     "/notifications/:path*",
     "/explore/:path*",
     "/messages/:path*",

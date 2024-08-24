@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   try {
-    const url = `${process.env.API_BASE_URL}/feed`;
+    const url = `${process.env.FEED_API}`;
 
     const cookies = request.headers.get("cookie");
 

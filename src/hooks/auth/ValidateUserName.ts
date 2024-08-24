@@ -1,6 +1,6 @@
 "use client";
 
-import { requestServer } from "@/configs/axios";
+import { clientRequest } from "@/utils/axios";
 import { useState } from "react";
 
 const useAuthValidateUserName = () => {
@@ -18,17 +18,9 @@ const useAuthValidateUserName = () => {
 
   const doRequest = async ({ body }: { body: object }) => {
     setLoading(true);
-    const res = await requestServer({
-      url,
-      method: "POST",
-      data: body,
-    });
+    const res = await clientRequest.post(url, body);
+    setResponse(res.data);
     setLoading(false);
-    setResponse({
-      code: res.data.code,
-      message: res.data.message,
-      data: res.data.data,
-    });
   };
 
   return {

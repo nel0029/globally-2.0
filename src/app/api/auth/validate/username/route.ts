@@ -6,14 +6,19 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { user_name } = body;
 
-    const url = `${process.env.API_BASE_URL}/auth/verify/user-name/${user_name}`;
+    const url = `${process.env.USER_AUTH_API}/verify/user-name/${user_name}`;
 
-    const { nextResponse } = await requestBackend(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
+    const { nextResponse } = await requestBackend(
+      url,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
       },
-    });
+      request,
+      false
+    );
 
     return nextResponse;
   } catch (error) {

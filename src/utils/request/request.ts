@@ -1,13 +1,28 @@
 import { AuthErrorResponseCodesEnum } from "@/enums/auth/ErrorCodes";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import removeCookies from "../cookies/remove-cookies";
 import setCookies from "../cookies/set-cookies";
 
 const requestBackend = async (
   url: string,
   options = {},
+  request: NextRequest,
   requiredAuth = true
 ) => {
+  const token = request.cookies.get("token");
+  const auth_name = request.cookies.get("auth_name");
+
+  if ((!token || !auth_name) && requiredAuth) {
+    const UnauthorizedResponse = NextResponse.json({
+      code: AuthErrorResponseCodesEnum.E0005,
+      message: "No token found",
+    });
+
+    return {
+      nextResponse: UnauthorizedResponse,
+    };
+  }
+
   const response = await fetch(url, options);
   const data = await response.json();
 

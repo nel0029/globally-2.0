@@ -1,8 +1,10 @@
 "use client";
-import useGetFeed from "@/hooks/feed/useGetFeed";
+
+import useGetFeed from "@/hooks/services/feed/useGetFeed";
 
 const HomePage = () => {
-  useGetFeed();
+  const { data, isLoading } = useGetFeed();
+
   return <div>HomePage</div>;
 };
 

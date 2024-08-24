@@ -2,6 +2,7 @@
 
 import ThemeClient from "@/components/common/theme/ThemeClient";
 import UserWrapper from "../user-wrapper";
+import ProtectedRoutesLayout from "./protected";
 
 export default function RootLayout({
   children,
@@ -12,7 +13,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <UserWrapper>
-          <ThemeClient>{children}</ThemeClient>
+          <ThemeClient>
+            <ProtectedRoutesLayout>{children}</ProtectedRoutesLayout>
+          </ThemeClient>
         </UserWrapper>
       </body>
     </html>
