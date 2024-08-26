@@ -7,11 +7,12 @@ const getFeed = async (url: string) => {
 const useGetFeed = () => {
   const url = `/api/posts/get-list`;
 
-  const { data, isLoading } = useSWR(url, getFeed);
+  const { data, isLoading, mutate } = useSWR(url, getFeed);
 
   return {
     data,
     isLoading,
+    mutate,
   };
 };
 

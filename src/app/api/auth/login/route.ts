@@ -22,10 +22,6 @@ export async function POST(request: NextRequest) {
 
     return nextResponse;
   } catch (error) {
-    console.log("ERROR catched", error);
     return NextResponse.json(error);
   }
-}
-function checkCookies(request: NextRequest) {
-  throw new Error("Function not implemented.");
 }

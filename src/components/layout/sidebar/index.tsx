@@ -26,8 +26,6 @@ const SideBar = () => {
 
   const menuItems = useMenuItemsData();
 
-  if (user === null) return null;
-
   return (
     <SideBarContainer>
       {menuItems.map((item) => (
@@ -54,7 +52,7 @@ const SideBar = () => {
 
       <MenuItem
         menuStyle={{ display: isChildMenuOpen ? "flex" : "none" }}
-        text="Account Settings"
+        text="Account"
         icon={
           <div style={{ width: "1.75rem", height: "1.75rem" }}>
             <div

@@ -1,13 +1,13 @@
 "use client";
 
-import { AuthPageWrapper } from "../styled";
+import { AuthMainContentWrapper } from "../styled";
 import LogInForm from "@/components/common/forms/LogInForm";
 
 const LogInPage = () => {
   return (
-    <AuthPageWrapper>
+    <AuthMainContentWrapper>
       <LogInForm />
-    </AuthPageWrapper>
+    </AuthMainContentWrapper>
   );
 };
 

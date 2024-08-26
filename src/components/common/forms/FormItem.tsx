@@ -1,3 +1,4 @@
+import { AuthFormValues } from "@/types/common";
 import { FormInput, FormItemWrapper, FormLabel, FormText } from "./style";
 
 interface FormInputProps {
@@ -6,7 +7,7 @@ interface FormInputProps {
   placeholder: string;
   error?: string;
   name: string;
-  form: { [key: string]: string };
+  form: AuthFormValues;
   onChange: (e: React.ChangeEvent<HTMLInputElement>, name: string) => void;
 }
 
@@ -33,7 +34,7 @@ const FormItem = ({
         type={type}
         placeholder={placeholder}
         $isError={!!error}
-        value={form[name]}
+        value={form[name as keyof AuthFormValues]}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, name)}
         autoComplete="off"
       />

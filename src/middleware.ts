@@ -5,7 +5,6 @@ export function middleware(request: NextRequest) {
   const auth_name = request.cookies.get("auth_name");
 
   if (!token || !auth_name) {
-    console.log('MIDDLEWARE: "No token found"');
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
@@ -19,6 +18,5 @@ export const config = {
     "/explore/:path*",
     "/messages/:path*",
     "/settings/:path*",
-    "/api/posts/get-list/:path*",
   ],
 };

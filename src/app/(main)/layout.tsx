@@ -1,5 +1,5 @@
 import MainLayout from "@/components/layout/main-layout";
-import { PageWrapper } from "@/components/layout/main-layout/style";
+import { MainContentWrapper } from "@/components/layout/main-layout/style";
 import SideBar from "@/components/layout/sidebar";
 
 export default function RootLayout({
@@ -11,7 +11,7 @@ export default function RootLayout({
     <MainLayout>
       <div style={{ width: "100%", height: "100%", display: "flex" }}>
         <SideBar />
-        <PageWrapper>{children}</PageWrapper>
+        <MainContentWrapper>{children}</MainContentWrapper>
       </div>
     </MainLayout>
   );

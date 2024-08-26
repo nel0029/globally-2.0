@@ -1,13 +1,13 @@
 "use client";
 
-import { AuthPageWrapper } from "../styled";
+import { AuthMainContentWrapper } from "../styled";
 import RegisterForm from "@/components/common/forms/RegisterForm";
 
 const RegisterPage = () => {
   return (
-    <AuthPageWrapper>
+    <AuthMainContentWrapper>
       <RegisterForm />
-    </AuthPageWrapper>
+    </AuthMainContentWrapper>
   );
 };
 

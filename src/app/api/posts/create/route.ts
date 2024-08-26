@@ -1,13 +1,15 @@
 import { requestBackend } from "@/utils/request/request";
+import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
   try {
-    const url = `${process.env.FEED_API}`;
+    const body = await request.formData();
+    const url = `${process.env.POSTS_API}`;
 
     const { nextResponse } = await requestBackend(
       url,
-      { method: "GET" },
+      { method: "POST", body: body },
       request
     );
 

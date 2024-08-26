@@ -1,32 +1,23 @@
 "use client";
 
+import { AuthFormValues, AuthResponse } from "@/types/common";
 import { clientRequest } from "@/utils/axios";
-import { useState } from "react";
+import useSWRMutation from "swr/mutation";
+
+const logIn = async (url: string, { arg }: { arg: AuthFormValues }) => {
+  const res = await clientRequest.post(url, arg);
+  return res.data;
+};
 
 const useAuthLogIn = () => {
   const url = `/api/auth/login`;
-  const [loading, setLoading] = useState(false);
-  const [response, setResponse] = useState<{
-    code: string;
-    message: string;
-    data: object;
-  }>({
-    code: "",
-    message: "",
-    data: {},
-  });
-
-  const doRequest = async ({ body }: { body: object }) => {
-    setLoading(true);
-    const res = await clientRequest.post(url, body);
-    setResponse(res.data);
-    setLoading(false);
-  };
+  const { data, isMutating, trigger } = useSWRMutation(url, logIn);
 
   return {
-    loading,
-    doRequest,
-    data: response,
+    doRequest: trigger,
+    data,
+    isLoading: isMutating,
   };
 };
+
 export default useAuthLogIn;

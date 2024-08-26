@@ -25,14 +25,14 @@ const MenuItem = ({
   childText?: ReactNode;
   toggleChildMenu?: () => void;
   menuStyle?: React.CSSProperties;
-  path: string;
+  path?: string;
 }) => {
   return (
     <SideBarMenuItem
       $isOnRoute={isOnRoute}
       onClick={onClick}
       style={menuStyle}
-      href={path}
+      href={path ?? ""}
     >
       {!!icon && <SideBarIconContainer>{icon}</SideBarIconContainer>}
       <SideBarTextContainer>{text}</SideBarTextContainer>

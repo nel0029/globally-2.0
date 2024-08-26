@@ -5,7 +5,7 @@ import setCookies from "../cookies/set-cookies";
 
 const requestBackend = async (
   url: string,
-  options = {},
+  options: RequestInit = {},
   request: NextRequest,
   requiredAuth = true
 ) => {
@@ -22,8 +22,19 @@ const requestBackend = async (
       nextResponse: UnauthorizedResponse,
     };
   }
+  const headers = new Headers(options.headers || {});
+  const cookies = request.headers.get("cookie");
+  if (cookies) {
+    headers.set("Cookie", cookies);
+  }
 
-  const response = await fetch(url, options);
+  const fetchOptions: RequestInit = {
+    ...options,
+    headers,
+    credentials: "include",
+  };
+
+  const response = await fetch(url, fetchOptions);
   const data = await response.json();
 
   const setCookieHeaders = response.headers.get("set-cookie");
@@ -34,6 +45,7 @@ const requestBackend = async (
   }
 
   if (requiredAuth && data && data.code === AuthErrorResponseCodesEnum.E0005) {
+    console.log("CALLED");
     removeCookies(nextResponse);
   }
 

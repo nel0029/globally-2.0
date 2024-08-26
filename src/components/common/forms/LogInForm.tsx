@@ -14,11 +14,12 @@ import { useEffect, useState } from "react";
 import useAuthLogIn from "@/hooks/auth/LogIn";
 import { AuthErrorResponseCodesEnum } from "@/enums/auth/ErrorCodes";
 import { AuthSuccessResponseCodesEnum } from "@/enums/auth/SuccessCodes";
+import { AuthFormValues } from "@/types/common";
 
 const LogInForm = () => {
   const router = useRouter();
 
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<AuthFormValues>({
     login_id: "",
     password: "",
   });
@@ -28,7 +29,7 @@ const LogInForm = () => {
     valid: "",
   });
 
-  const { doRequest: login, data } = useAuthLogIn();
+  const { doRequest: login, data, isLoading } = useAuthLogIn();
 
   const handleOnChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -39,6 +40,7 @@ const LogInForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!form.login_id || !form.password) {
       setFormError((prev: { [key: string]: string }) => ({
         valid: prev.valid,
@@ -50,27 +52,32 @@ const LogInForm = () => {
     }
 
     setFormError({ valid: "", username: "", password: "" });
-    await login({ body: form });
+
+    login(form);
   };
 
   useEffect(() => {
-    if (data.code && data.code === AuthSuccessResponseCodesEnum.S0002) {
+    if (
+      !isLoading &&
+      data &&
+      data.code === AuthSuccessResponseCodesEnum.S0002
+    ) {
       setFormError({
         username: "",
         password: "",
         valid: "",
       });
+
       router.push("/home");
     }
 
-    if (data.code && data.code === AuthErrorResponseCodesEnum.E0004) {
-      setFormError((prev: { [key: string]: string }) => ({
-        password: prev.password,
-        username: prev.username,
+    if (!isLoading && data && data.code === AuthErrorResponseCodesEnum.E0004) {
+      setFormError((prev) => ({
+        ...prev,
         valid: data.message,
       }));
     }
-  }, [data, router]);
+  }, [data, isLoading, router]);
 
   return (
     <FormCard $size={30} onSubmit={handleSubmit}>

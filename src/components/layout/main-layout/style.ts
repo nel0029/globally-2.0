@@ -10,12 +10,16 @@ export const SideBarWrapper = styled.div`
   justify-content: center;
 `;
 
-export const PageWrapper = styled.div`
-  min-width: 500px;
+export const MainContentWrapper = styled.div`
   width: 100%;
   height: max-content;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+`;
+
+export const PageWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `;
