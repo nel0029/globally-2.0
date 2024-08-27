@@ -1,13 +1,15 @@
 "use client";
 
-import { useEffect, useState, ReactNode } from "react";
+import { useEffect, useState, ReactNode, useContext } from "react";
 import {
   IoHome,
   IoPerson,
   IoSearch,
   IoMail,
   IoNotifications,
+  IoPersonCircleSharp,
 } from "react-icons/io5";
+import { UserContext } from "@/contexts/user";
 
 interface MenuItem {
   name: string;
@@ -40,6 +42,11 @@ const useMenuItemsData = () => {
       name: "Notifications",
       icon: <IoNotifications />,
       path: "/notifications",
+    },
+    {
+      name: "Account",
+      icon: <IoPersonCircleSharp />,
+      path: "/settings",
     },
   ];
 

@@ -3,8 +3,7 @@
 import { Inter } from "next/font/google";
 import { AppTheme } from "@/configs/theme";
 import { ThemeProvider } from "styled-components";
-import { createContext, useEffect, useState } from "react";
-import Link from "next/link";
+import { useEffect, useState } from "react";
 import { ThemeContext } from "@/contexts/theme";
 
 const inter = Inter({ subsets: ["latin"] });
