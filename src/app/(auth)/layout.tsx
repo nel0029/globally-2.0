@@ -24,7 +24,7 @@ export default function RootLayout({
       <body
         className={inter.className}
         style={{
-          backgroundColor: mode === "dark" ? "#121212" : "#F5F5F5",
+          backgroundColor: mode === "dark" ? "#121212" : "#FFFFFF",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",

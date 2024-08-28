@@ -32,7 +32,7 @@ export const SideBarMenuItem = styled(Link)<{ $isOnRoute?: boolean }>`
     $isOnRoute ? theme.colors.blue["100"] : theme.font_colors["100"]};
 
   background-color: ${({ theme, $isOnRoute }) =>
-    $isOnRoute ? theme.colors.blue["T200"] : "transparent"};
+    $isOnRoute ? theme.colors.blue["T300"] : "transparent"};
 
   border-radius: ${({ theme }) => theme.size["2"]};
 
@@ -43,7 +43,7 @@ export const SideBarMenuItem = styled(Link)<{ $isOnRoute?: boolean }>`
       $isOnRoute ? theme.colors.neutral["100"] : theme.colors.blue["100"]};
 
     background-color: ${({ theme, $isOnRoute }) =>
-      $isOnRoute ? theme.colors.blue["T300"] : theme.colors.blue["T200"]};
+      $isOnRoute ? theme.colors.blue["T300"] : theme.colors.blue["T100"]};
   }
 
   transition: all 0.2s ease-in-out;
