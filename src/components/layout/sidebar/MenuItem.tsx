@@ -2,9 +2,9 @@
 
 import { ReactNode } from "react";
 import {
-  SideBarIconContainer,
-  SideBarMenuItem,
-  SideBarTextContainer,
+  LeftSideBarIconContainer,
+  LeftSideBarMenuItem,
+  LeftSideBarTextContainer,
 } from "./style";
 
 const MenuItem = ({
@@ -28,16 +28,18 @@ const MenuItem = ({
   path?: string;
 }) => {
   return (
-    <SideBarMenuItem
+    <LeftSideBarMenuItem
       $isOnRoute={isOnRoute}
       onClick={onClick}
       style={menuStyle}
       href={path ?? ""}
     >
-      {!!icon && <SideBarIconContainer>{icon}</SideBarIconContainer>}
-      <SideBarTextContainer>{text}</SideBarTextContainer>
-      {!!iconEnd && <SideBarIconContainer>{iconEnd}</SideBarIconContainer>}
-    </SideBarMenuItem>
+      {!!icon && <LeftSideBarIconContainer>{icon}</LeftSideBarIconContainer>}
+      <LeftSideBarTextContainer>{text}</LeftSideBarTextContainer>
+      {!!iconEnd && (
+        <LeftSideBarIconContainer>{iconEnd}</LeftSideBarIconContainer>
+      )}
+    </LeftSideBarMenuItem>
   );
 };
 

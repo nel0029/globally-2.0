@@ -106,9 +106,17 @@ const line_height = {
   "7xl": "4.5rem",
 };
 
+const button_variants = {
+  blue: "rgba(4, 150, 255, 0.6)",
+  red: "rgba(217, 17, 89, 0.6)",
+  green: "rgba(4, 211, 150, 0.6)",
+  yellow: "rgba(248, 198, 48, 0.6)",
+};
+
 export const AppTheme: Theme = {
   light: {
     colors: colors,
+    button_variants: button_variants,
     background: {
       "100": "#f5f5f5",
       "200": "#f5f5f5",
@@ -168,6 +176,7 @@ export const AppTheme: Theme = {
   },
   dark: {
     colors: colors,
+    button_variants: button_variants,
     background: {
       "100": "#121212",
       "200": "#282828",

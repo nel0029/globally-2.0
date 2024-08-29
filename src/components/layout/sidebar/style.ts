@@ -3,7 +3,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 
-export const SideBarContainer = styled.div`
+export const LeftSideBarContainer = styled.div`
   width: 250px;
   height: 100%;
   display: flex;
@@ -14,7 +14,7 @@ export const SideBarContainer = styled.div`
   gap: ${({ theme }) => theme.size["1"]};
 `;
 
-export const SideBarMenuItem = styled(Link)<{ $isOnRoute?: boolean }>`
+export const LeftSideBarMenuItem = styled(Link)<{ $isOnRoute?: boolean }>`
   text-decoration: none;
   cursor: pointer;
   width: 100%;
@@ -49,7 +49,7 @@ export const SideBarMenuItem = styled(Link)<{ $isOnRoute?: boolean }>`
   transition: all 0.2s ease-in-out;
 `;
 
-export const SideBarIconContainer = styled.div`
+export const LeftSideBarIconContainer = styled.div`
   width: max-content;
   height: 100%;
   display: flex;
@@ -58,7 +58,7 @@ export const SideBarIconContainer = styled.div`
   font-size: ${({ theme }) => theme.font_size["2xl"]};
 `;
 
-export const SideBarTextContainer = styled.div`
+export const LeftSideBarTextContainer = styled.div`
   width: 100%;
 `;
 

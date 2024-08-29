@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext, useState } from "react";
-import { GroupMenuContainer, SideBarContainer } from "./style";
+import { GroupMenuContainer, LeftSideBarContainer } from "./style";
 import {
   IoSunny,
   IoMoon,
@@ -16,7 +16,7 @@ import useMenuItemsData from "./MenuItemsData";
 import { ThemeContext } from "@/contexts/theme";
 import { UserContext } from "@/contexts/user";
 
-const SideBar = () => {
+const LeftSideBar = () => {
   const { user } = useContext(UserContext);
   const { mode, toggleMode } = useContext(ThemeContext);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -26,7 +26,7 @@ const SideBar = () => {
   const menuItems = useMenuItemsData();
 
   return (
-    <SideBarContainer>
+    <LeftSideBarContainer>
       <GroupMenuContainer>
         {menuItems.map((item) => (
           <MenuItem
@@ -65,8 +65,8 @@ const SideBar = () => {
         onClick={toggleMode}
         path=""
       />
-    </SideBarContainer>
+    </LeftSideBarContainer>
   );
 };
 
-export default SideBar;
+export default LeftSideBar;

@@ -1,5 +1,8 @@
 export interface Theme {
   [key: string]: {
+    button_variants: {
+      [key: string]: string;
+    };
     colors: {
       [key: string]: {
         [key: string]: string;

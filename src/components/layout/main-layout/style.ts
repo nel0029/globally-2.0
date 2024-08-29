@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 
-export const SideBarWrapper = styled.div`
+export const LeftSideBarWrapper = styled.nav`
   width: 100%;
   height: 100%;
   display: flex;
@@ -10,14 +10,15 @@ export const SideBarWrapper = styled.div`
   justify-content: center;
 `;
 
-export const MainContentWrapper = styled.div`
+export const MainContentWrapper = styled.main`
   width: 100%;
+  max-width: 800px;
   height: max-content;
 `;
 
 export const PageWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: max-content;
   display: flex;
   flex-direction: column;
 `;

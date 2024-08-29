@@ -1,12 +1,7 @@
+import Header from "@/components/layout/header/Header";
 import MainLayout from "@/components/layout/main-layout";
-import {
-  HeaderContainer,
-  HeaderTextContainer,
-  LogoContainer,
-  MainContentWrapper,
-} from "@/components/layout/main-layout/style";
-import SideBar from "@/components/layout/sidebar";
-import { IoEarth } from "react-icons/io5";
+import { MainContentWrapper } from "@/components/layout/main-layout/style";
+import LeftSideBar from "@/components/layout/sidebar";
 
 export default function RootLayout({
   children,
@@ -15,19 +10,11 @@ export default function RootLayout({
 }>) {
   return (
     <MainLayout>
-      <HeaderContainer>
-        <HeaderTextContainer>
-          Gl
-          <LogoContainer>
-            <IoEarth />
-          </LogoContainer>
-          bally
-        </HeaderTextContainer>
-      </HeaderContainer>
-      <div style={{ width: "100%", height: "100%", display: "flex" }}>
-        <SideBar />
+      <Header />
+      <main style={{ width: "100%", height: "100%", display: "flex" }}>
+        <LeftSideBar />
         <MainContentWrapper>{children}</MainContentWrapper>
-      </div>
+      </main>
     </MainLayout>
   );
 }
