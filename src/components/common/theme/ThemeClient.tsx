@@ -28,18 +28,7 @@ const ThemeClient = ({
   };
 
   return (
-    <div
-      className={inter.className}
-      style={{
-        backgroundColor: mode === "dark" ? "#121212" : "#FFFFFF",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100%",
-        width: "100%",
-      }}
-    >
+    <div className={`${inter.className} ${mode}-mode container`}>
       <ThemeProvider theme={AppTheme[mode]}>
         <ThemeContext.Provider value={{ mode, toggleMode }}>
           {children}

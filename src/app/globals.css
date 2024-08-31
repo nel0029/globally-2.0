@@ -11,3 +11,24 @@ body,
 :root {
   --color-primary: #000000;
 }
+
+body {
+  transition: color 1s ease-in-out, background-color 1s ease-in-out;
+
+  .dark-mode {
+    background-color: #121212;
+  }
+
+  .light-mode {
+    background-color: #ffffff;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+}
