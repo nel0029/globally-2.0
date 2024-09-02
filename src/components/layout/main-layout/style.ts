@@ -31,7 +31,6 @@ export const HeaderContainer = styled.div`
   align-items: center;
   border-bottom: 1px solid ${({ theme }) => theme.border_colors["400"]};
   font-size: ${({ theme }) => theme.font_size["2xl"]};
-  color: ${({ theme }) => theme.font_colors["100"]};
   padding: ${({ theme }) => theme.size["2"]};
 `;
 

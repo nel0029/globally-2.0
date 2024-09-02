@@ -14,7 +14,6 @@ export const CreateNewPostCardContainer = styled.div`
   border-color: ${({ theme }) => theme.border_colors["600"]};
   border-style: solid;
   border-radius: ${({ theme }) => theme.size["2"]};
-  color: ${({ theme }) => theme.font_colors["100"]};
 `;
 
 export const CreateNewPostSectionContainer = styled.div`
@@ -34,8 +33,6 @@ export const CustomTextArea = styled.textarea`
   background-color: transparent;
   font-family: inherit;
   font-size: ${({ theme }) => theme.font_size["base"]};
-
-  color: ${({ theme }) => theme.font_colors["100"]};
 
   border: none;
 

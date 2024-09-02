@@ -9,6 +9,7 @@ export const FormCard = styled.form<{ $size?: number }>`
 
   max-width: 400px;
   width: 100%;
+
   padding: ${({ theme }) => theme.size["10"]} ${({ theme }) => theme.size["7"]};
 
   background-color: ${({ theme }) => theme.background["200"]};
@@ -40,12 +41,11 @@ export const FormInput = styled.input<{ $isError?: boolean }>`
   border-radius: ${({ theme }) => theme.size["1"]};
 
   font-size: ${({ theme }) => theme.size["4"]};
-  color: ${({ theme }) => theme.font_colors["100"]};
   line-height: ${({ theme }) => theme.size["5"]};
 
   padding: ${({ theme }) => theme.size["2"]};
 
-  background-color: ${({ theme }) => "transparent"};
+  background-color: transparent;
 
   &:focus {
     border-color: transparent;
@@ -57,7 +57,6 @@ export const FormInput = styled.input<{ $isError?: boolean }>`
 `;
 
 export const FormLabel = styled.span`
-  color: ${({ theme }) => theme.font_colors["100"]};
   font-size: ${({ theme }) => theme.size["4"]};
   line-height: ${({ theme }) => theme.size["5"]};
 `;
