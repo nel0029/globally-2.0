@@ -33,7 +33,7 @@ export const CustomTextArea = styled.textarea`
   background-color: transparent;
   font-family: inherit;
   font-size: ${({ theme }) => theme.font_size["base"]};
-
+  color: ${({ theme }) => theme.font_colors["100"]};
   border: none;
 
   &::placeholder {

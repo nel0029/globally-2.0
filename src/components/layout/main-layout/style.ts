@@ -50,6 +50,6 @@ export const HeaderTextContainer = styled.div`
   align-items: center;
   font-weight: 700;
   font-size: ${({ theme }) => theme.font_size["2xl"]};
-
+  padding: 0 ${({ theme }) => theme.size["2"]};
   cursor: pointer;
 `;
